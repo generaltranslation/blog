@@ -12,10 +12,10 @@ const siteMetadata = {
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'archie@generaltranslation.com',
-  github: 'https://github.com/General-Translation/repositories',
+  github: 'https://github.com/General-Translation/gt-libraries',
   x: 'https://x.com/generaltranslation',
   // twitter: 'https://twitter.com/Twitter',
-  linkedin: 'https://www.linkedin.com/company/general-translation',
+  linkedin: 'https://www.linkedin.com/company/general-translation/',
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
