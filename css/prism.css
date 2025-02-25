@@ -44,67 +44,77 @@
 
 /* Token styles */
 /**
- * MIT License
- * Copyright (c) 2018 Sarah Drasner
- * Sarah Drasner's[@sdras] Night Owl
- * Ported by Sara vieria [@SaraVieira]
- * Added by Souvik Mandal [@SimpleIndian]
+ * VS Code Dark Theme-inspired colors
+ * Enhanced for better contrast on dark backgrounds
  */
 .token.comment,
 .token.prolog,
 .token.cdata {
-  color: rgb(99, 119, 119);
+  color: #7fbf7f; /* Brighter green */
   font-style: italic;
 }
 
 .token.punctuation {
-  color: rgb(199, 146, 234);
+  color: #e8e8e8; /* Brighter white */
 }
 
 .namespace {
-  color: rgb(178, 204, 214);
+  color: #e8e8e8; /* Brighter white */
 }
 
 .token.deleted {
-  color: rgba(239, 83, 80, 0.56);
+  color: #ff6a6a; /* Brighter red */
   font-style: italic;
 }
 
 .token.symbol,
 .token.property {
-  color: rgb(128, 203, 196);
+  color: #b3ddff; /* Brighter light blue */
 }
 
 .token.tag,
-.token.operator,
+.token.operator {
+  color: #e8e8e8; /* Brighter white */
+}
+
 .token.keyword {
-  color: rgb(127, 219, 202);
+  color: #6cb8ff; /* Brighter blue */
+}
+
+/* Add specific styling for control keywords like export, default, etc. */
+.token.keyword.control,
+.token.keyword.module,
+.token.keyword.operator.expression {
+  color: #e48ae4; /* Brighter pink */
 }
 
 .token.boolean {
-  color: rgb(255, 88, 116);
+  color: #6cb8ff; /* Brighter blue */
 }
 
 .token.number {
-  color: rgb(247, 140, 108);
+  color: #c5e8b3; /* Brighter light green */
 }
 
-.token.constant,
+.token.constant {
+  color: #6dceff; /* Brighter cyan */
+}
+
 .token.function,
 .token.builtin,
 .token.char {
-  color: rgb(130, 170, 255);
+  color: #ffe68a; /* Brighter gold */
 }
 
 .token.selector,
 .token.doctype {
-  color: rgb(199, 146, 234);
+  color: #e48ae4; /* Brighter pink */
   font-style: italic;
 }
 
 .token.attr-name,
 .token.inserted {
-  color: rgb(173, 219, 103);
+  color: #b3ddff; /* Brighter light blue */
   font-style: italic;
 }
 
@@ -113,19 +123,22 @@
 .token.entity,
 .language-css .token.string,
 .style .token.string {
-  color: rgb(173, 219, 103);
+  color: #ffc099; /* Brighter orange */
 }
 
-.token.class-name,
+.token.class-name {
+  color: #6dffe0; /* Brighter teal */
+}
+
 .token.atrule,
 .token.attr-value {
-  color: rgb(255, 203, 139);
+  color: #ffc099; /* Brighter orange */
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-  color: rgb(214, 222, 235);
+  color: #b3ddff; /* Brighter light blue */
 }
 
 .token.important,
