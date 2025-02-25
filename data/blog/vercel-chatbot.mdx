@@ -1,0 +1,158 @@
+---
+title: Internationalizing an AI chatbot
+description: How to internationalize an AI chatbot in 5 minutes
+date: 2025-02-25
+author: Brian Lou
+---
+
+## Intro
+
+The other day, I came across a Next.js AI chatbot template on [Vercel](https://github.com/vercel/ai-chatbot).
+To my surprise, it was only available in English.
+
+So I internationalized it. **In 5 minutes.** Here's how:
+
+## Why internationalize?
+
+Often times, developers are so focused on building the product that they forget about the users.
+For apps such as AI chatbots which are inherently multilingual and designed to be used by anyone,
+what good is a chatbot that only supports English?
+
+If you're working on a startup and your product is only available in English,
+aren't you missing out on a lot of potential customers?
+
+Turns out, there's a reason why most products are only available in English. It's because **internationalization is hard**.
+
+Existing libraries such as `next-intl` or `next-i18next` are a pain to setup and use. Not only that, but they don't even do any translations.
+You still have to hire translators, manage dictionaries, and deal with all the other pain points of internationalization.
+
+Until today, that is.
+
+Here at General Translation, we've been working on a new library called [`gt-next`](https://github.com/General-Translation/gt-libraries) that makes it easy to internationalize your app.
+It's a one stop shop for all your internationalization needs including translations, routing, and more.
+
+I used `gt-next` to internationalize the AI chatbot in **5 minutes**.
+
+## Installation
+
+I began by forking and cloning the repository:
+
+```bash
+git clone https://github.com/vercel/ai-chatbot.git
+```
+
+Then, I installed the dependencies:
+
+```bash
+npm install
+```
+
+If you're also running into dependency conflicts like I was, try using this [branch](https://github.com/General-Translation/ai-chatbot/tree/base).
+
+```bash
+git clone -b base https://github.com/General-Translation/ai-chatbot.git
+```
+
+Next, I installed the [`gt-next`](https://github.com/General-Translation/gt-libraries) and [`gt-next-cli`](https://github.com/General-Translation/gt-libraries) packages.
+
+```bash
+npm install gt-next gt-next-cli
+```
+
+## Configuration
+
+Then, I ran the CLI setup tool and selected "Yes" for every question:
+
+```bash
+npx gt-next-cli setup
+```
+
+After this, I added a few locales to the `next.config.js` plugin:
+
+```js
+export default withGTConfig(nextConfig, {
+  defaultLocale: 'en-US',
+  locales: ['en-US', 'fr', 'es', 'zh'],
+})
+```
+
+I could've added more locales, but I just wanted to test the chatbot with a few different languages. Feel free to add as many locales as you want!
+
+## Running the chatbot
+
+Of course, I couldn't forget to include all of necessary environment variables.
+
+```bash
+cp .env.example .env.local
+```
+
+After populating all of the required environment variables, including `GT_API_KEY` and `GT_PROJECT_ID` which allows for in-development translation, I ran the chatbot:
+
+```bash
+npm run dev
+```
+
+That was it! I switched my browser language to French and the UI changed to French. Same for Spanish and Chinese.
+
+Simple, right?
+
+I made it even easier to switch languages by adding a language selector to the header of the chatbot.
+
+```tsx
+import { LocaleSelector } from 'gt-next/client'
+;<LocaleSelector />
+```
+
+All I did was import the `LocaleSelector` component and add it to the `chat-header.tsx` component. I didn't need to do any configuration or middleware routing.
+
+It just worked.
+
+## Cleaning up
+
+There were a few things left to clean up, primarily strings.
+
+The CLI setup tool did a good job of translating all of the React elements, but there were a few pesky strings that were hardcoded.
+
+For example, the `model-selector.tsx` file had some hardcoded descriptions of chat models:
+
+```tsx
+{
+  id: 'chat-model-large',
+  name: 'Large model',
+  description: 'Large model for complex, multi-step tasks',
+},
+```
+
+I cleaned these up by importing the `useGT` hook from `gt-next/client` and using it to translate the strings:
+
+```tsx
+import { useGT } from 'gt-next/client';
+const t = useGT();
+{
+  id: 'chat-model-large',
+  name: t('Large model'),
+  description: t('Large model for complex, multi-step tasks'),
+},
+```
+
+That was it! All of the text in the chatbot was now internationalized and available in any language.
+
+## Deploying to Production
+
+Deploying to production was even easier. I swapped out my `GT_API_KEY` environment variable with my production API key and ran the translate command:
+
+```bash
+npx gt-next-cli translate
+```
+
+Finally, I deployed the chatbot to Vercel.
+
+## Conclusion
+
+The experience of internationalizing the chatbot was a breeze. I didn't have to mess around with any configuration files, dictionaries, or fancy routing.
+
+In a matter of minutes, I had a fully functioning, internationalized AI chatbot that was available in Spanish, French, and Chinese.
+
+If you're interested in the code, you can find it [here](https://github.com/General-Translation/ai-chatbot).
+
+If you're interested in using General Translation, checkout the [website](https://generaltranslation.com) or [GitHub repo](https://github.com/General-Translation/gt-libraries).

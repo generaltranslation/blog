@@ -4,6 +4,9 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
