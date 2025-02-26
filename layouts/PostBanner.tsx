@@ -10,6 +10,9 @@ import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Tag from '@/components/Tag'
+import TOCInline from 'pliny/ui/TOCInline'
+import { List } from 'lucide-react'
+import ActiveTOC from '@/components/ActiveTOC'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -27,7 +30,7 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 }
 
 export default function PostMinimal({ content, next, authorDetails, prev, children }: LayoutProps) {
-  const { slug, title, images, date, tags, filePath, path } = content
+  const { slug, title, images, date, tags, filePath, path, toc } = content
   const displayImage =
     images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
   const basePath = path.split('/')[0]
@@ -55,6 +58,11 @@ export default function PostMinimal({ content, next, authorDetails, prev, childr
                   <time dateTime={date}>
                     {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                   </time>
+                  {' • '}
+                  <span>
+                    {content.readingTime.text ||
+                      `${Math.ceil(content.readingTime.minutes)} min read`}
+                  </span>
                 </dd>
               </div>
             </dl>
@@ -102,7 +110,28 @@ export default function PostMinimal({ content, next, authorDetails, prev, childr
 
           <div className="divide-y divide-gray-200 pb-8 dark:divide-gray-700">
             <div className="divide-y divide-gray-200 dark:divide-gray-700">
-              <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
+              <div className="grid grid-cols-1 xl:grid-cols-4 xl:gap-x-6">
+                <div className="prose dark:prose-invert max-w-none pt-10 pb-8 xl:col-span-3">
+                  {children}
+                </div>
+                <aside className="hidden xl:block">
+                  <div className="sticky top-24">
+                    <h2 className="mb-2 flex items-center gap-2 text-lg font-bold">
+                      <List className="h-4 w-4" /> On this page
+                    </h2>
+                    {toc && toc.length > 0 && (
+                      <ActiveTOC
+                        toc={toc}
+                        asDisclosure={false}
+                        fromHeading={2}
+                        toHeading={3}
+                        ulClassName="space-y-2 [&_ul]:mt-2 [&_ul]:ml-4 [&_ul]:list-none"
+                        liClassName="text-gray-600 text-sm hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400 transition-colors duration-200"
+                      />
+                    )}
+                  </div>
+                </aside>
+              </div>
               {siteMetadata.comments && (
                 <div
                   className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
