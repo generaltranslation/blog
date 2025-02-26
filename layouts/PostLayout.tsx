@@ -9,9 +9,11 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import { List } from 'lucide-react'
+import { List, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react'
 import ActiveTOC from '@/components/ActiveTOC'
 import Bleed from 'pliny/ui/Bleed'
+import SocialIcon from '@/components/social-icons'
+import CopyLinkButton from '@/components/social-icons/copy-icon'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -34,8 +36,16 @@ interface LayoutProps {
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags, toc, images } = content
-  const basePath = path.split('/')[0]
   const displayImage = images && images.length > 0 ? images[0] : null
+
+  // Use the site URL without the basePath, as Next.js will automatically add the basePath
+  const siteUrlWithoutBasePath = siteMetadata.siteUrl.replace(process.env.BASE_PATH || '', '')
+  const shareUrl = `${siteUrlWithoutBasePath}/${path}`
+  const encodedShareUrl = encodeURIComponent(shareUrl)
+
+  // Include summary in the share text if available
+  const shareText = content.summary ? `${title} - ${content.summary}` : title
+  const encodedTitle = encodeURIComponent(shareText)
 
   return (
     <SectionContainer>
@@ -105,6 +115,31 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </ul>
                 </dd>
               </dl>
+
+              {/* Social sharing buttons in sidebar */}
+              <div className="py-4 xl:border-b xl:border-gray-200 xl:py-4 xl:dark:border-gray-700">
+                <h2 className="mb-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                  Share this article
+                </h2>
+                <div className="flex items-center space-x-4">
+                  <SocialIcon
+                    kind="twitter"
+                    href={`https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedTitle}`}
+                    size={5}
+                  />
+                  <SocialIcon
+                    kind="linkedin"
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedShareUrl}&title=${encodedTitle}&summary=${encodeURIComponent(content.summary || '')}`}
+                    size={5}
+                  />
+                  <SocialIcon
+                    kind="x"
+                    href={`https://x.com/intent/tweet?url=${encodedShareUrl}&text=${encodedTitle}`}
+                    size={5}
+                  />
+                  <CopyLinkButton url={shareUrl} iconSize={5} />
+                </div>
+              </div>
 
               {toc && toc.length > 0 && (
                 <div className="py-4 xl:py-8">
@@ -182,7 +217,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
                 <div className="border-t border-gray-200 pt-4 dark:border-gray-700">
                   <Link
-                    href={`/${basePath}`}
+                    href={`/${siteUrlWithoutBasePath}`}
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     aria-label="Back to the blog"
                   >
