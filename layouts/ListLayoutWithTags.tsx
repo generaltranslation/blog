@@ -95,7 +95,7 @@ export default function ListLayoutWithTags({
                 <h3 className="text-primary-500 font-bold uppercase">All Posts</h3>
               ) : (
                 <Link
-                  href={`/blog`}
+                  href={`/all`}
                   className="hover:text-primary-500 dark:hover:text-primary-500 font-bold text-gray-700 uppercase dark:text-gray-300"
                 >
                   All Posts

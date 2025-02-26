@@ -82,7 +82,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     {authorDetails.map((author) => (
                       <li className="flex items-center space-x-2" key={author.name}>
                         {author.avatar && (
-                          <Link href={`/blog/about/${author.slug}`} className="flex-shrink-0">
+                          <Link href={`/about/${author.slug}`} className="flex-shrink-0">
                             <Image
                               src={author.avatar}
                               width={38}
@@ -94,7 +94,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         )}
                         <dl className="flex-grow text-sm leading-5 font-medium whitespace-nowrap">
                           <dt className="sr-only">Name</dt>
-                          <Link href={`/blog/about/${author.slug}`}>
+                          <Link href={`/about/${author.slug}`}>
                             <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
                           </Link>
                           <dt className="sr-only">Twitter</dt>

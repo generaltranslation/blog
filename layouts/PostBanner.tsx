@@ -73,7 +73,7 @@ export default function PostMinimal({ content, next, authorDetails, prev, childr
                 {authorDetails.map((author) => (
                   <li className="flex flex-col items-center space-y-2" key={author.name}>
                     {author.avatar && (
-                      <Link href={`/blog/about/${author.slug}`}>
+                      <Link href={`/${author.slug}`}>
                         <Image
                           src={author.avatar}
                           width={50}
@@ -85,7 +85,7 @@ export default function PostMinimal({ content, next, authorDetails, prev, childr
                     )}
                     <dl className="flex flex-col items-center text-sm font-medium">
                       <dt className="sr-only">Name</dt>
-                      <Link href={`/blog/about/${author.slug}`}>
+                      <Link href={`/${author.slug}`}>
                         <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
                       </Link>
                       {author.occupation && (
