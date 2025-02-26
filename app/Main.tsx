@@ -3,6 +3,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import { Book } from 'lucide-react'
 
 const MAX_DISPLAY = 5
 
@@ -21,7 +22,7 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags } = post
+            const { slug, date, title, summary, tags, readingTime } = post
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -30,6 +31,9 @@ export default function Home({ posts }) {
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        <p className="mt-1 text-sm">
+                          <Book className="inline-block h-4 w-4" /> {readingTime.text}
+                        </p>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">

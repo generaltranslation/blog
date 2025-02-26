@@ -11,6 +11,7 @@ import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import { List } from 'lucide-react'
 import ActiveTOC from '@/components/ActiveTOC'
+import Bleed from 'pliny/ui/Bleed'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -32,8 +33,9 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags, toc } = content
+  const { filePath, path, slug, date, title, tags, toc, images } = content
   const basePath = path.split('/')[0]
+  const displayImage = images && images.length > 0 ? images[0] : null
 
   return (
     <SectionContainer>
@@ -41,6 +43,15 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
+            {displayImage && (
+              <div className="mb-6 w-full">
+                <Bleed>
+                  <div className="relative aspect-2/1 w-full">
+                    <Image src={displayImage} alt={title} fill className="object-cover" />
+                  </div>
+                </Bleed>
+              </div>
+            )}
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
@@ -63,7 +74,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
-            <div className="sticky top-24 xl:col-span-1">
+            <div className="xl:sticky xl:top-24 xl:col-span-1">
               <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
                 <dt className="sr-only">Authors</dt>
                 <dd>
@@ -87,18 +98,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                             <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
                           </Link>
                           <dt className="sr-only">Twitter</dt>
-                          <dd>
-                            {author.twitter && (
-                              <Link
-                                href={author.twitter}
-                                className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                              >
-                                {author.twitter
-                                  .replace('https://twitter.com/', '@')
-                                  .replace('https://x.com/', '@')}
-                              </Link>
-                            )}
-                          </dd>
+                          <dd className="text-gray-500 dark:text-gray-400">{author.occupation}</dd>
                         </dl>
                       </li>
                     ))}
@@ -121,54 +121,6 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   />
                 </div>
               )}
-
-              {tags && (
-                <div className="py-4 xl:border-t xl:border-gray-200 xl:py-8 xl:dark:border-gray-700">
-                  <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                    Tags
-                  </h2>
-                  <div className="flex flex-wrap">
-                    {tags.map((tag) => (
-                      <Tag key={tag} text={tag} />
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {(next || prev) && (
-                <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:border-t xl:border-gray-200 xl:py-8 xl:dark:border-gray-700">
-                  {prev && prev.path && (
-                    <div>
-                      <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                        Previous Article
-                      </h2>
-                      <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                        <Link href={`/${prev.path}`}>{prev.title}</Link>
-                      </div>
-                    </div>
-                  )}
-                  {next && next.path && (
-                    <div>
-                      <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                        Next Article
-                      </h2>
-                      <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                        <Link href={`/${next.path}`}>{next.title}</Link>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              <div className="pt-4 xl:border-t xl:border-gray-200 xl:pt-8 xl:dark:border-gray-700">
-                <Link
-                  href={`/${basePath}`}
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label="Back to the blog"
-                >
-                  &larr; Back to the blog
-                </Link>
-              </div>
             </div>
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
@@ -179,6 +131,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 {` • `}
                 <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
+
               {siteMetadata.comments && (
                 <div
                   className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
@@ -187,6 +140,56 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   <Comments slug={slug} />
                 </div>
               )}
+              {/* Footer section with tags, prev/next links, and back to blog */}
+              <div className="py-6">
+                {tags && (
+                  <div className="border-t border-gray-200 py-4 dark:border-gray-700">
+                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                      Tags
+                    </h2>
+                    <div className="flex flex-wrap">
+                      {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {(next || prev) && (
+                  <div className="flex flex-col gap-4 border-t border-gray-200 py-4 sm:flex-row sm:justify-between dark:border-gray-700">
+                    {prev && prev.path && (
+                      <div>
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                          Previous Article
+                        </h2>
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <Link href={`/${prev.path}`}>{prev.title}</Link>
+                        </div>
+                      </div>
+                    )}
+                    {next && next.path && (
+                      <div className="text-right">
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                          Next Article
+                        </h2>
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <Link href={`/${next.path}`}>{next.title}</Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <div className="border-t border-gray-200 pt-4 dark:border-gray-700">
+                  <Link
+                    href={`/${basePath}`}
+                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                    aria-label="Back to the blog"
+                  >
+                    &larr; Back to the blog
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
