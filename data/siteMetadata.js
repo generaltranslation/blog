@@ -81,7 +81,7 @@ const siteMetadata = {
   search: {
     provider: 'kbar', // kbar or algolia
     kbarConfig: {
-      searchDocumentsPath: `/blog/search.json`, // path to load documents to search
+      searchDocumentsPath: `/search.json`, // path to load documents to search
     },
     // provider: 'algolia',
     // algoliaConfig: {
