@@ -84,8 +84,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
-            <div className="xl:sticky xl:top-24 xl:col-span-1">
-              <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+            <div className="xl:sticky xl:top-16 xl:col-span-1">
+              <dl className="pt-6 pb-4 xl:border-b xl:border-gray-200 xl:pt-11 xl:pb-10 xl:dark:border-gray-700">
                 <dt className="sr-only">Authors</dt>
                 <dd>
                   <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
@@ -116,12 +116,22 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </dd>
               </dl>
 
+              {/* Reading time - only visible on non-mobile (xl) screens */}
+              <div className="hidden py-4 xl:block xl:border-b xl:border-gray-200 xl:py-4 xl:dark:border-gray-700">
+                <h2 className="mb-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                  Reading Time
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {content.readingTime.text || `${Math.ceil(content.readingTime.minutes)} min read`}
+                </p>
+              </div>
+
               {/* Social sharing buttons in sidebar */}
               <div className="py-4 xl:border-b xl:border-gray-200 xl:py-4 xl:dark:border-gray-700">
-                <h2 className="mb-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                <h2 className="mb-2 text-center text-xs tracking-wide text-gray-500 uppercase xl:text-left dark:text-gray-400">
                   Share this article
                 </h2>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-center space-x-4 xl:justify-start">
                   <SocialIcon
                     kind="twitter"
                     href={`https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedTitle}`}
@@ -143,7 +153,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
               {toc && toc.length > 0 && (
                 <div className="py-4 xl:py-8">
-                  <h2 className="mb-2 flex items-center gap-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                  <h2 className="mb-3 flex items-center gap-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                     <List className="h-4 w-4" /> On this page
                   </h2>
                   <ActiveTOC

@@ -12,7 +12,7 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app *.googletagmanager.com *.google-analytics.com;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src *.s3.amazonaws.com;
+  media-src *.s3.amazonaws.com *.vercel-storage.com localhost:* 127.0.0.1:*;
   connect-src *;
   font-src 'self';
   frame-src giscus.app

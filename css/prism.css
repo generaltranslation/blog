@@ -58,6 +58,16 @@
   color: #e8e8e8; /* Brighter white */
 }
 
+/* Make parentheses pink */
+.token.punctuation:is(\(, \)) {
+  color: #e48ae4; /* Brighter pink */
+}
+
+/* Make curly braces blue */
+.token.punctuation:is(\{, \}) {
+  color: #6cb8ff; /* Brighter blue */
+}
+
 .namespace {
   color: #e8e8e8; /* Brighter white */
 }
@@ -86,6 +96,11 @@
 .token.keyword.module,
 .token.keyword.operator.expression {
   color: #e48ae4; /* Brighter pink */
+}
+
+/* Make return keyword match other control keywords */
+.token.keyword[class*='return'] {
+  color: #e48ae4; /* Brighter pink - matching other control keywords */
 }
 
 .token.boolean {
@@ -152,4 +167,36 @@
 
 .token.table {
   display: inline;
+}
+
+/* Add styling for JSX/HTML elements and attributes */
+.token.tag {
+  color: #6cb8ff; /* Keep original blue for HTML tags */
+}
+
+.token.tag .token.punctuation {
+  color: #a0a0a0; /* Gray color for angle brackets in HTML tags */
+}
+
+/* Style for curly braces in JSX expressions */
+.token.script .token.punctuation,
+.token.template-punctuation,
+.token.script-punctuation {
+  color: #6cb8ff; /* Brighter blue - matching keywords */
+}
+
+/* Style for JSX expression containers */
+.token.script,
+.token.language-javascript {
+  color: inherit; /* Inherit from parent to ensure proper nesting */
+}
+
+/* Enhance existing operator styling for JSX */
+.token.operator {
+  color: #e8e8e8; /* Brighter white - already defined but reinforcing */
+}
+
+/* Style for JSX component names (capitalized tags) */
+.token.tag.class-name {
+  color: #4caf50; /* Darker green for React component names */
 }

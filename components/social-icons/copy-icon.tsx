@@ -22,7 +22,7 @@ export default function CopyLinkButton({ url, className = '', iconSize = 5 }: Co
 
   return (
     <button
-      className={`relative text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 ${className}`}
+      className={`hover:text-primary-500 dark:hover:text-primary-400 relative cursor-pointer fill-current text-gray-700 dark:text-gray-200 ${className}`}
       onClick={copyToClipboard}
       title="Copy link to clipboard"
       aria-label="Copy link to clipboard"
@@ -39,11 +39,6 @@ export default function CopyLinkButton({ url, className = '', iconSize = 5 }: Co
           <Link className={`h-${iconSize} w-${iconSize}`} />
         </span>
       </div>
-      {copied && (
-        <span className="absolute top-1/2 left-full ml-2 -translate-y-1/2 rounded bg-gray-800 px-2 py-1 text-xs whitespace-nowrap text-white">
-          Copied!
-        </span>
-      )}
     </button>
   )
 }
