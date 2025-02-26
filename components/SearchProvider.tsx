@@ -19,14 +19,6 @@ export const SearchProvider = ({ children }) => {
             section: 'Home',
             perform: () => router.push('/'),
           },
-          {
-            id: 'projects',
-            name: 'Projects',
-            keywords: '',
-            shortcut: ['p'],
-            section: 'Home',
-            perform: () => router.push('/projects'),
-          },
         ],
         onSearchDocumentsLoad(json) {
           return json.map((post: Blog) => ({
