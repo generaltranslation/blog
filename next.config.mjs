@@ -59,6 +59,7 @@ const securityHeaders = [
 const output = process.env.EXPORT ? 'export' : undefined
 const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
+const assetPrefix = '/blog-static'
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
@@ -68,6 +69,7 @@ const config = () => {
   return plugins.reduce((acc, next) => next(acc), {
     output,
     basePath,
+    assetPrefix,
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
@@ -89,6 +91,18 @@ const config = () => {
           headers: securityHeaders,
         },
       ]
+    },
+    async rewrites() {
+      return {
+        beforeFiles: [
+          // This rewrite is necessary to support assetPrefix only in Next 14 and below.
+          // It is not necessary in Next 15.
+          {
+            source: '/blog-static/_next/:path*',
+            destination: '/_next/:path*',
+          },
+        ],
+      }
     },
     webpack: (config, options) => {
       config.module.rules.push({
