@@ -139,7 +139,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   />
                   <SocialIcon
                     kind="linkedin"
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedShareUrl}&title=${encodedTitle}&summary=${encodeURIComponent(content.summary || '')}`}
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedShareUrl}&title=${encodedTitle}&summary=${encodeURIComponent(content.summary || '')}&source=${encodeURIComponent(siteMetadata.title)}`}
                     size={5}
                   />
                   <SocialIcon
