@@ -4,8 +4,9 @@ import AuthorLayout from '@/layouts/AuthorLayout'
 import { coreContent } from 'pliny/utils/contentlayer'
 import { genPageMetadata } from 'app/seo'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export const generateMetadata = ({ params }): Metadata => {
   const author = allAuthors.find((p) => p.slug === params.slug)
   if (!author) {
     return genPageMetadata({ title: 'Person Not Found' })
@@ -19,7 +20,7 @@ export const generateStaticParams = async () => {
   }))
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default function Page({ params }) {
   const author = allAuthors.find((p) => p.slug === params.slug) as Authors
 
   if (!author) {
