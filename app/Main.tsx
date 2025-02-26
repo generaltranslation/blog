@@ -25,9 +25,9 @@ export default function Home({ posts }) {
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags, readingTime, authorDetails } = post
             return (
-              <li key={slug} className="py-12">
+              <li key={slug} className="py-6">
                 <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                  <div className="space-y-1 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
@@ -61,15 +61,15 @@ export default function Home({ posts }) {
                         )}
                       </dd>
                     </dl>
-                    <div className="space-y-5 xl:col-span-3">
-                      <div className="space-y-6">
+                    <div className="space-y-4 xl:col-span-3">
+                      <div className="space-y-3">
                         <div>
                           <h2 className="text-2xl leading-8 font-bold tracking-tight">
                             <Link href={`/${slug}`} className="text-gray-900 dark:text-gray-100">
                               {title}
                             </Link>
                           </h2>
-                          <div className="flex flex-wrap">
+                          <div className="mt-2 flex flex-wrap">
                             {tags.map((tag) => (
                               <Tag key={tag} text={tag} />
                             ))}
