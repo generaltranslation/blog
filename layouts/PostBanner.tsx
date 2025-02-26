@@ -2,25 +2,35 @@ import { ReactNode } from 'react'
 import Image from '@/components/Image'
 import Bleed from 'pliny/ui/Bleed'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
+import type { Authors, Blog } from 'contentlayer/generated'
 import Comments from '@/components/Comments'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import Tag from '@/components/Tag'
 
 interface LayoutProps {
   content: CoreContent<Blog>
+  authorDetails: CoreContent<Authors>[]
   children: ReactNode
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
 }
 
-export default function PostMinimal({ content, next, prev, children }: LayoutProps) {
-  const { slug, title, images } = content
+const postDateTemplate: Intl.DateTimeFormatOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}
+
+export default function PostMinimal({ content, next, authorDetails, prev, children }: LayoutProps) {
+  const { slug, title, images, date, tags, filePath, path } = content
   const displayImage =
     images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
+  const basePath = path.split('/')[0]
 
   return (
     <SectionContainer>
@@ -38,39 +48,120 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             <div className="relative pt-10">
               <PageTitle>{title}</PageTitle>
             </div>
+            <dl className="space-y-10">
+              <div>
+                <dt className="sr-only">Published on</dt>
+                <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                  <time dateTime={date}>
+                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                  </time>
+                </dd>
+              </div>
+            </dl>
+
+            {/* Author details */}
+            <div className="flex justify-center pt-4">
+              <ul className="flex flex-wrap justify-center gap-6">
+                {authorDetails.map((author) => (
+                  <li className="flex flex-col items-center space-y-2" key={author.name}>
+                    {author.avatar && (
+                      <Link href={`/blog/about/${author.slug}`}>
+                        <Image
+                          src={author.avatar}
+                          width={50}
+                          height={50}
+                          alt="avatar"
+                          className="h-12 w-12 cursor-pointer rounded-full"
+                        />
+                      </Link>
+                    )}
+                    <dl className="flex flex-col items-center text-sm font-medium">
+                      <dt className="sr-only">Name</dt>
+                      <Link href={`/blog/about/${author.slug}`}>
+                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                      </Link>
+                      {author.occupation && (
+                        <>
+                          <dt className="sr-only">Bio</dt>
+                          <dd className="text-gray-500 dark:text-gray-400">
+                            {author.occupation}
+                            {author.company && <span> @ {author.company}</span>}
+                          </dd>
+                        </>
+                      )}
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-6 divide-y divide-gray-200 dark:divide-gray-700">
+              <div className="border-b border-gray-200 dark:border-gray-700"></div>
+            </div>
           </div>
-          <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
-          {siteMetadata.comments && (
-            <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-              <Comments slug={slug} />
-            </div>
-          )}
-          <footer>
-            <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
-              {prev && prev.path && (
-                <div className="pt-4 xl:pt-8">
-                  <Link
-                    href={`/${prev.path}`}
-                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label={`Previous post: ${prev.title}`}
-                  >
-                    &larr; {prev.title}
-                  </Link>
-                </div>
-              )}
-              {next && next.path && (
-                <div className="pt-4 xl:pt-8">
-                  <Link
-                    href={`/${next.path}`}
-                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label={`Next post: ${next.title}`}
-                  >
-                    {next.title} &rarr;
-                  </Link>
+
+          <div className="divide-y divide-gray-200 pb-8 dark:divide-gray-700">
+            <div className="divide-y divide-gray-200 dark:divide-gray-700">
+              <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
+              {siteMetadata.comments && (
+                <div
+                  className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
+                  id="comment"
+                >
+                  <Comments slug={slug} />
                 </div>
               )}
             </div>
-          </footer>
+            <footer>
+              <div className="divide-y divide-gray-200 text-sm leading-5 font-medium dark:divide-gray-700">
+                {tags && (
+                  <div className="py-4">
+                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                      Tags
+                    </h2>
+                    <div className="flex flex-wrap">
+                      {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(next || prev) && (
+                  <div className="flex justify-between py-4">
+                    {prev && prev.path && (
+                      <div>
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                          Previous Article
+                        </h2>
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <Link href={`/${prev.path}`}>{prev.title}</Link>
+                        </div>
+                      </div>
+                    )}
+                    {next && next.path && (
+                      <div>
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                          Next Article
+                        </h2>
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <Link href={`/${next.path}`}>{next.title}</Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="pt-4">
+                <Link
+                  href={`/${basePath}`}
+                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  aria-label="Back to the blog"
+                >
+                  &larr; Back to the blog
+                </Link>
+              </div>
+            </footer>
+          </div>
         </div>
       </article>
     </SectionContainer>

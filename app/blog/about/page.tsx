@@ -8,6 +8,11 @@ export const metadata = genPageMetadata({ title: 'About' })
 
 export default function Page() {
   const author = allAuthors.find((p) => p.slug === 'default') as Authors
+
+  if (!author) {
+    return <div>Default author not found</div>
+  }
+
   const mainContent = coreContent(author)
 
   return (
