@@ -9,7 +9,7 @@ export const SearchProvider = ({ children }) => {
   return (
     <KBarSearchProvider
       kbarConfig={{
-        searchDocumentsPath: 'search.json',
+        searchDocumentsPath: '/blog/search.json',
         defaultActions: [
           {
             id: 'homepage',

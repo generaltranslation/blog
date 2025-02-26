@@ -39,7 +39,7 @@
       "datePublished": "2025-02-25T00:00:00.000Z",
       "dateModified": "2025-02-25T00:00:00.000Z",
       "description": "How to internationalize an AI chatbot in 5 minutes",
-      "image": "/static/images/twitter-card.png",
+      "image": "/blog/static/images/twitter-card.png",
       "url": "https://generaltranslation.com/blog/blog/vercel-chatbot"
     }
   },
@@ -156,7 +156,7 @@
       "datePublished": "2025-01-07T00:00:00.000Z",
       "dateModified": "2025-01-07T00:00:00.000Z",
       "description": "The easiest way to internationalize your Next.js app",
-      "image": "/static/images/twitter-card.png",
+      "image": "/blog/static/images/twitter-card.png",
       "url": "https://generaltranslation.com/blog/blog/gt-next"
     }
   },
@@ -191,7 +191,7 @@
       "datePublished": "2024-10-26T00:00:00.000Z",
       "dateModified": "2024-10-26T00:00:00.000Z",
       "description": "General Translation, Inc. is making the web multilingual",
-      "image": "/static/images/twitter-card.png",
+      "image": "/blog/static/images/twitter-card.png",
       "url": "https://generaltranslation.com/blog/blog/hiring"
     }
   }
