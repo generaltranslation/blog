@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 import { Book } from 'lucide-react'
+import Image from 'next/image'
 
 const MAX_DISPLAY = 5
 
@@ -22,7 +23,7 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags, readingTime } = post
+            const { slug, date, title, summary, tags, readingTime, authorDetails } = post
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -34,6 +35,30 @@ export default function Home({ posts }) {
                         <p className="mt-1 text-sm">
                           <Book className="inline-block h-4 w-4" /> {readingTime.text}
                         </p>
+                        {authorDetails && authorDetails.length > 0 && (
+                          <div className="mt-4 flex items-center space-x-2">
+                            <div className="flex flex-wrap items-center space-x-2">
+                              {authorDetails.map((author) => (
+                                <div key={author.slug} className="flex items-center space-x-1">
+                                  {author.avatar && (
+                                    <Image
+                                      src={
+                                        author.avatar.startsWith('/')
+                                          ? `/blog${author.avatar}`
+                                          : author.avatar
+                                      }
+                                      width={24}
+                                      height={24}
+                                      alt={author.name}
+                                      className="h-6 w-6 rounded-full"
+                                    />
+                                  )}
+                                  <span className="text-sm">{author.name}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
