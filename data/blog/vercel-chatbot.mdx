@@ -1,7 +1,7 @@
 ---
 title: Internationalizing an AI chatbot
 date: 2025-02-25
-authors: [brian-lou]
+authors: [brian]
 summary: How to internationalize an AI chatbot in 5 minutes
 tags: ['guide', 'ai', 'chatbot', 'internationalization', 'nextjs', 'vercel']
 ---
@@ -29,7 +29,7 @@ You still have to hire translators, manage dictionaries, and deal with all the o
 
 Until today, that is.
 
-Here at General Translation, we've been working on a new library called [`gt-next`](https://github.com/General-Translation/gt-libraries) that makes it easy to internationalize your app.
+Here at General Translation, we've been working on a new library called [gt-next](https://github.com/General-Translation/gt-libraries) that makes it easy to internationalize your app.
 It's a one stop shop for all your internationalization needs including translations, routing, and more.
 
 I used `gt-next` to internationalize the AI chatbot in **5 minutes**.
@@ -73,7 +73,7 @@ After this, I added a few locales to the `next.config.js` plugin:
 ```js
 export default withGTConfig(nextConfig, {
   defaultLocale: 'en-US',
-  locales: ['en-US', 'fr', 'es', 'zh'],
+  locales: ['fr', 'es', 'zh'],
 })
 ```
 
@@ -81,7 +81,7 @@ I could've added more locales, but I just wanted to test the chatbot with a few 
 
 ## Running the chatbot
 
-Of course, I couldn't forget to include all of necessary environment variables.
+Of course, I couldn't forget to include all of the environment variables.
 
 ```bash
 cp .env.example .env.local
@@ -99,12 +99,18 @@ Simple, right?
 
 I made it even easier to switch languages by adding a language selector to the header of the chatbot.
 
-```tsx
-import { LocaleSelector } from 'gt-next/client'
-;<LocaleSelector />
+```jsx
+import { LocaleSelector } from 'gt-next/client';
+export default function PureChatHeader() {
+  return (
+    {/* ... existing code ... */}
+    <LocaleSelector />
+    {/* ... existing code ... */}
+  );
+}
 ```
 
-All I did was import the `LocaleSelector` component and add it to the `chat-header.tsx` component. I didn't need to do any configuration or middleware routing.
+All I did was import the `LocaleSelector` component and add it to the `chat-header.tsx` component.
 
 It just worked.
 
@@ -150,9 +156,11 @@ Finally, I deployed the chatbot to Vercel.
 
 ## Conclusion
 
-The experience of internationalizing the chatbot was a breeze. I didn't have to mess around with any configuration files, dictionaries, or fancy routing.
+The experience of internationalizing the chatbot was a breeze.
+I didn't have to mess around with any configuration files, dictionaries, or fancy routing.
 
-In a matter of minutes, I had a fully functioning, internationalized AI chatbot that was available in Spanish, French, and Chinese.
+In a matter of minutes, I had a fully functioning,
+internationalized AI chatbot that was available in Spanish, French, and Chinese.
 
 If you're interested in the code, you can find it [here](https://github.com/General-Translation/ai-chatbot).
 
