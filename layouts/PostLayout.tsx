@@ -56,8 +56,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             {displayImage && (
               <div className="mb-6 w-full">
                 <Bleed>
-                  <div className="relative aspect-2/1 w-full">
-                    <Image src={displayImage} alt={title} fill className="object-cover" />
+                  <div className="relative w-full" style={{ aspectRatio: '2.9/1' }}>
+                    <Image src={displayImage} alt={title} fill className="object-contain" />
                   </div>
                 </Bleed>
               </div>
