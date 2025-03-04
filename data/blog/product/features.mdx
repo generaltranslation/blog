@@ -26,9 +26,9 @@ you have to do all of this work manually, thus wasting valuable engineering time
 
 `gt-next` and `gt-react` are two JavaScript libraries that make it easy to internationalize your app.
 
-They allow you to:
+They let you:
 
-- Easily internationalize your app with `T` components
+- Easily internationalize your app with `<T>` components
 - Not worry about managing dictionary keys
 - Translate your app in real-time
 - Ship with the confidence that your translations are accurate
@@ -36,11 +36,11 @@ They allow you to:
 
 They interface with General Translation infrastructure which comprises of:
 
-- A translation engine that is powered by the latest state of the art LLMs and is constantly evolving
-- A platform that allows you to manage your translations
+- A translation service that is powered by the latest state of the art LLMs
+- A platform that lets you manage your translations
 - A global CDN that is always available
 
-Combining `gt-next` and `gt-react` with General Translation, you get a powerful and flexible one stop i18n solution that works for all React and Next.js apps.
+Combining `gt-next` and `gt-react` with General Translation infrastructure, you get a powerful and flexible one stop i18n solution that works for all React and Next.js apps.
 
 Here's what makes `gt-next` and `gt-react` unique:
 
@@ -68,7 +68,7 @@ return (
 
 If you have a large app with thousands of translation entries, this is a **nightmare** to setup, maintain, and modify.
 
-With General Translation, you can just code, without having to worry about separate dictionary items:
+With `gt-next` and `gt-react`, you can just code, without having to worry about separate dictionary items:
 
 ```tsx
 // --- UI Code --- //
@@ -91,9 +91,9 @@ t('Hello, World!')
 
 _One less source of tech debt!_
 
-## Real-Time Translation
+## Real-Time Translations in Development
 
-Powered by the latest state of the art LLMs, the GT translation engine can translate your app **on-demand** and **in real time**.
+The GT translation service can translate your app **on-demand** and **in real time**.
 
 This means that your app is translated **alongside** your development process.
 
@@ -111,7 +111,7 @@ If a sentence is too long, just shorten it to see the new updated translation.
 
 All translations are done within the context of the code, so you can be confident that the translations are accurate.
 
-Optionally, you can add context to your translations to provide additional information or instructions to the GT translation engine.
+Optionally, you can add context to your translations to provide additional information or instructions to the GT translation service.
 
 For example, if you want to specify that a translation should have a certain tone, you can do the following:
 
@@ -125,13 +125,9 @@ For example, if you want to specify that a translation should have a certain ton
 
 General Translation is built on top of a reliable and scalable infrastructure, ensuring that the translation service is always available.
 
-Additionally, the GT Translation Engine is powered by the latest state of the art LLMs, and we are always working to improve it.
-
 <InteractiveGlobe width="50vw" maxWidth="200px" />
 
-## Lazy Loading
-
-General Translation infrastructure includes a global CDN, allowing translations to be lazy loaded and served from the closest edge location.
+General Translation infrastructure also includes a global CDN, allowing translations to be lazy loaded and served from the closest edge location.
 This is natively built into the GT libraries, so you don't need to worry about it!
 Optionally, `gt-next` and `gt-react` also allow you to use your own CDN.
 
