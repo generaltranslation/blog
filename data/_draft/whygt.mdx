@@ -1,0 +1,39 @@
+---
+title: Hassle-free Internationalization
+date: 2025-03-04
+authors: [brian]
+images: ['/static/blogs/frameworks.png']
+summary: This article gives a summary of all of the features of General Translation.
+tags: ['guide', 'internationalization', 'nextjs', 'react', 'tutorial']
+---
+
+If you've ever tried to internationalize an app, you know it can be a pain.
+Traditionally, there are several steps in the process:
+
+1. **Library integration**
+
+- The first step is to integrate an internationalization (i18n) library into your app. Often times, this is something like `react-i18next` or `next-i18next`.
+- These libraries create source files that contain all of the text you want to translate.
+
+2. **Translation**
+
+- The next step is to upload the source files onto a translation provider and wait for the translations to be completed.
+- This also includes communicating with translators to ensure translations contain **context**, are **consistent**, and reflect the app's **global tone**.
+
+3. **Quality Assurance**
+
+- After saving the completed translations, you have to verify that the UI for your app is rendered correctly with the new translations.
+- For example, if the German word for "Performance" is **"Leistungsfähigkeit"**, your app's UI should not **cut off**, **break lines**, or **awkwardly** render the word "Leistungsfähigkeit" in the UI.
+  - This is a real problem for mobile apps!
+- This could involve multiple rounds of iteration and translation.
+
+**All in all, this process has several pain points and bottlenecks:**
+
+- Engineers have to take on painful refactors to integrate the i18n library into their code
+- Translations take a **long time** to complete
+- Quality of translations is hard to control, and multiple iterations may be needed
+
+## Why General Translation?
+
+General Translation is a platform that greatly simplifies this process.
+It is a one stop shop for
