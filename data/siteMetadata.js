@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'General Translation Blog',
   author: 'General Translation',
   headerTitle: '',
-  description: 'News, updates, and insights from General Translation',
+  description: 'Updates and research from General Translation, Inc.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://generaltranslation.com/blog',
