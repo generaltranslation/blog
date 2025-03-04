@@ -1,5 +1,5 @@
 ---
-title: Introducing gt-next and gt-react
+title: Introducing gt-next
 date: 2025-03-04
 authors: [brian]
 images: ['/static/blogs/frameworks.png']
@@ -7,58 +7,56 @@ summary: This article gives a summary of all of the features of General Translat
 tags: ['internationalization', 'nextjs', 'react', 'localization']
 ---
 
-I'm sure you've experienced some frustrations with internationalization (i18n) before.
-For me personally, I've experienced these pain points:
+Internationalizating of a Next.js app has plenty of pain points. 
+For me, the worst parts of i18n are:
 
-- To integrate an i18n library into my project, I had to spend a long time refactoring my code
-- Managing translation entry keys became a continuous source of tech debt
-- Translations took a **long time** to complete
-- The quality of translations was hard to control
-- Some translations broke the UI, while others were missing context
+- Refactoring my whole codebase to extract strings. It takes a long time!
+- Ongoing tech debt from managing translation keys.
+- Poor quality, out-of-context machine translations.
+- Translations breaking the UI.
 
-These frustrations are just some personal anecdotes.
 If you're a solo developer or working in a small team,
-you have to do all of this work manually, thus wasting valuable engineering time.
+you have to do all of this work manually. 
+It wastes a lot of engineering time.
 
-`gt-next` and `gt-react` fix **all of these problems**.
+My new open source library, gt-next, fixes **all of these problems**.
 
-## What are gt-next and gt-react?
+## What is gt-next?
 
-`gt-next` and `gt-react` are two JavaScript libraries that make it easy to internationalize your app.
+gt-next is a Next.js library that makes it easy to internationalize your app.
+The key features are:
 
-They let you:
+- Easily internationalize your app, without a big refactor
+- See your translations hot reload in development
+- Support as many languages as you need, loading them from a global CDN to reduce the bundle size
 
-- Easily internationalize your app with `<T>` components
-- Not worry about managing dictionary keys
-- Translate your app in real-time
-- Ship with the confidence that your translations are accurate
-- Lazy load translations from a global CDN
+gt-next integrates with the [generaltranslation.com](generaltranslation.com) platform to:
 
-They interface with General Translation infrastructure which comprises of:
+- Translate content with the latest LLMs
+- Manage your translations with an interactive editor
+- See translations on demand with development API keys
 
-- A translation service that is powered by the latest state of the art LLMs
-- A platform that lets you manage your translations
-- A global CDN that is always available
+The goal is a powerful and flexible one stop i18n solution that works for all React and Next.js apps.
 
-Combining `gt-next` and `gt-react` with General Translation infrastructure, you get a powerful and flexible one stop i18n solution that works for all React and Next.js apps.
+Here's what makes gt-next unique:
 
-Here's what makes `gt-next` and `gt-react` unique:
-
-## No Hassle Setup
-
-`gt-next` and `gt-react` are **extremely easy to set up**.
-
-Unlike traditional i18n libraries, they integrate seamlessly with your existing codebase.
+## Extremely easy to set up
 
 _Goodbye, painful refactors!_
 
-With other i18n libraries, your code might look something like this:
+Unlike traditional i18n libraries, gt-next does everything inline.
+
+With legacy i18n libraries, your code might look something like this:
 
 ```tsx
 // --- UI Code --- //
 const t = useTranslations();
 return (
-  <p>{t('membership', { memberSince: user.memberSince })}</p>
+  <p>
+    {t('membership', { 
+      memberSince: user.memberSince 
+    })}
+  </p>
 )
 // --- Separate Dictionary File --- //
 {
@@ -68,7 +66,7 @@ return (
 
 If you have a large app with thousands of translation entries, this is a **nightmare** to setup, maintain, and modify.
 
-With `gt-next` and `gt-react`, you can just code, without having to worry about separate dictionary items:
+With gt-next, you can just code, without having to worry about separate dictionary items:
 
 ```tsx
 // --- UI Code --- //
@@ -81,58 +79,47 @@ return (
 )
 ```
 
-You can also translate strings in-line:
+import and use the `<T>` component and all the translations happen inline.
+So no more managing dictionary files,
+and you can see content in the context in which it's displayed!
 
-```tsx
-// --- UI Code --- //
-const t = useGT()
-t('Hello, World!')
-```
+## Real-time translations in development
 
-_One less source of tech debt!_
+During development, the library lets you translate your app **on-demand**, so you can see what your changes would look like in other languages.
+Just change text in your UI and watch the translation update **in real time**.
 
-## Real-Time Translations in Development
-
-The GT translation service can translate your app **on-demand** and **in real time**.
-
-This means that your app is translated **alongside** your development process.
-
-Translations are so fast that you can even change text in your UI and watch the translation update **in real time**.
-
-This makes quality assurance and editing translations a breeze, and allows you to catch issues early.
-If a sentence is too long, just shorten it to see the new updated translation.
+This makes quality assurance and editing translations a breeze.
 
 <video
   controls
   src="https://cabuge2ah388tbmm.public.blob.vercel-storage.com/live-translation-59coTlE8Zo7jZX1AlXm6sKJPoqEPIV.mp4"
 />
 
-## Context-Aware Translations
+## Context-aware translations
 
-All translations are done within the context of the code, so you can be confident that the translations are accurate.
+You can add an optional `context` prop to your `<T>` translation components.
 
-Optionally, you can add context to your translations to provide additional information or instructions to the GT translation service.
+This provides additional instructions to the GT translation service.
 
-For example, if you want to specify that a translation should have a certain tone, you can do the following:
+For example, if you want to specify that a translation should have a certain tone, you can add:
 
 ```tsx
-<T context={'A friendly and warm greeting'}>
-  <p>Hello, World!</p>
+<T context={'Translate informally'}>
+  <p>Hey there, world!</p>
 </T>
 ```
 
-## Reliable Infrastructure
+## Fast and reliable infrastructure
 
-General Translation is built on top of a reliable and scalable infrastructure, ensuring that the translation service is always available.
+GT services are built for reliability and scalability, ensuring that the translation service is always available.
 
 <InteractiveGlobe width="50vw" maxWidth="200px" />
 
-General Translation infrastructure also includes a global CDN, allowing translations to be lazy loaded and served from the closest edge location.
-This is natively built into the GT libraries, so you don't need to worry about it!
-Optionally, `gt-next` and `gt-react` also allow you to use your own CDN.
+GT also includes a global CDN, letting the library lazy load translations from the closest edge location.
+gt-next also lets you load files locally, or use your own CDN, or a mix of both!
 
 Not only does this drastically reduce the latency of translations and minimize your app's bundle size,
-but it also allows you to modify your translations in production **without having to re-deploy your app**.
+but it also lets you modify your translations in production **without having to re-deploy your app**.
 
 <video
   controls
@@ -141,9 +128,8 @@ but it also allows you to modify your translations in production **without havin
 
 ## Get Started
 
-All together, `gt-next` and `gt-react` make it easier than ever to internationalize your app.
+gt-next makes it easier than ever to internationalize your app.
 
-Start internationalizing your app in minutes with our [docs](https://generaltranslation.com/docs)!
+Start in minutes with our [docs](https://generaltranslation.com/docs)!
 
-General Translation is constantly evolving, and we are always working to improve it.
-If you find any features missing and would like to see them added, please let us know on our [Github](https://github.com/General-Translation/gt-libraries/issues) or [Discord](https://discord.gg/W99K6fchSu)!
+If you find any features missing and would like to see them added, please let me know on our [Github](https://github.com/General-Translation/gt-libraries/issues) or [Discord](https://discord.gg/W99K6fchSu)!
