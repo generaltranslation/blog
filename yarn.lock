@@ -2134,6 +2134,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fastify/busboy@npm:^2.0.0":
+  version: 2.1.1
+  resolution: "@fastify/busboy@npm:2.1.1"
+  checksum: 42c32ef75e906c9a4809c1e1930a5ca6d4ddc8d138e1a8c8ba5ea07f997db32210617d23b2e4a85fe376316a41a1a0439fc6ff2dedf5126d96f45a9d80754fb2
+  languageName: node
+  linkType: hard
+
 "@floating-ui/core@npm:^1.6.0":
   version: 1.6.9
   resolution: "@floating-ui/core@npm:1.6.9"
@@ -3210,6 +3217,136 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-spring/animated@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/animated@npm:9.7.5"
+  dependencies:
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: e28662a659933ceab30849dd6574f7c06554a76996bad03fabdbc145cef2a3242495695cfec5b9c9cac049ff72d2917dfd61304c2d17ff899cbdefb09f53bbeb
+  languageName: node
+  linkType: hard
+
+"@react-spring/core@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/core@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": ~9.7.5
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 60c0151547073edf35e0de0e066983096aefff7a5ecf83bf54c7a9a9807220c4212f0ccdf353ef63131652667105ba70cd7188dc31de32aab30e3cc095663a38
+  languageName: node
+  linkType: hard
+
+"@react-spring/konva@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/konva@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": ~9.7.5
+    "@react-spring/core": ~9.7.5
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    konva: ">=2.6"
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-konva: ^16.8.0 || ^16.8.7-0 || ^16.9.0-0 || ^16.10.1-0 || ^16.12.0-0 || ^16.13.0-0 || ^17.0.0-0 || ^17.0.1-0 || ^17.0.2-0 || ^18.0.0-0
+  checksum: 86f8d23e5e847a3728697cbf2f7ac3c12f1ae72878966d3d376b4935947db0c802b6e6225aefa33ca1a1a1b3394f945a4cf5958f487ae994debdb4b6d6dba116
+  languageName: node
+  linkType: hard
+
+"@react-spring/native@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/native@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": ~9.7.5
+    "@react-spring/core": ~9.7.5
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    react: 16.8.0  || >=17.0.0 || >=18.0.0
+    react-native: ">=0.58"
+  checksum: d574dd6ac19e136ec66495009515af93455138e3e2554d01871f801951f0f05839472476ba30557f94edf49b5c59030733abdf16ee8fe760c3f9d72faf425c55
+  languageName: node
+  linkType: hard
+
+"@react-spring/rafz@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/rafz@npm:9.7.5"
+  checksum: adbffdf25942a66802363f979f07e04c81abf19b49c55e62336220450f393d57ebe1c906694485d6d89e85a13fd223da3bdea22a955307eaecefaf59ea7ec7f9
+  languageName: node
+  linkType: hard
+
+"@react-spring/shared@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/shared@npm:9.7.5"
+  dependencies:
+    "@react-spring/rafz": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 374ee7bece09895b1102c68acd0d47cf0d6f6201f77956aeac5eba7a3ee3190f509172990febfdde1bd91f79dabbaa42d3adc31c221511746575b23dadda038d
+  languageName: node
+  linkType: hard
+
+"@react-spring/three@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/three@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": ~9.7.5
+    "@react-spring/core": ~9.7.5
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    "@react-three/fiber": ">=6.0"
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    three: ">=0.126"
+  checksum: dea5d51121f3157cafa7562018c82e993699d0282cea83f672d20fb879948f9a128d63d696e91181db7dc429626c5fd9c3323a9ea3a2cb9c701be8a96ff0fbb2
+  languageName: node
+  linkType: hard
+
+"@react-spring/types@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/types@npm:9.7.5"
+  checksum: f9d2dea0ea6afb6d81dc0275cf2554b20d7eef8bafac99fc0de5b728f1ad5a5c02438932dc70a360686b34166124b13900788ece09af3cee96ce585ba168480e
+  languageName: node
+  linkType: hard
+
+"@react-spring/web@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/web@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": ~9.7.5
+    "@react-spring/core": ~9.7.5
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 4da57c7d2bf4cf76cedd1c57986ba85e839aaec45e247f75b7d12d777f6054fe77446e95a18080db5e714b0a5386a07e617c36592506554abfd2c301c50e66cc
+  languageName: node
+  linkType: hard
+
+"@react-spring/zdog@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/zdog@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": ~9.7.5
+    "@react-spring/core": ~9.7.5
+    "@react-spring/shared": ~9.7.5
+    "@react-spring/types": ~9.7.5
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-zdog: ">=1.0"
+    zdog: ">=1.0"
+  checksum: 868aad4052ca6e866b358f8ac9156a0f78876c6b97dc3bc23a989fae9b8ae77db9a163da4b428138c99dd1444645ce86f20cb5546c8f69332009db6b1d0d1fab
+  languageName: node
+  linkType: hard
+
 "@react-stately/utils@npm:^3.10.5":
   version: 3.10.5
   resolution: "@react-stately/utils@npm:3.10.5"
@@ -3886,6 +4023,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/blob@npm:^0.27.2":
+  version: 0.27.2
+  resolution: "@vercel/blob@npm:0.27.2"
+  dependencies:
+    async-retry: ^1.3.3
+    is-buffer: ^2.0.5
+    is-node-process: ^1.2.0
+    throttleit: ^2.1.0
+    undici: ^5.28.4
+  checksum: 30da0597220669505f8ac33103491f86b1ae67e97546523d1260978acc82062d0281ccd9bee02b75756aca489350e0f5a78c8afc71028f27ea9e8f7c42daf759
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^3.0.0":
   version: 3.0.0
   resolution: "abbrev@npm:3.0.0"
@@ -4163,6 +4313,15 @@ __metadata:
   version: 1.0.0
   resolution: "async-function@npm:1.0.0"
   checksum: 9102e246d1ed9b37ac36f57f0a6ca55226876553251a31fc80677e71471f463a54c872dc78d5d7f80740c8ba624395cccbe8b60f7b690c4418f487d8e9fd1106
+  languageName: node
+  linkType: hard
+
+"async-retry@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "async-retry@npm:1.3.3"
+  dependencies:
+    retry: 0.13.1
+  checksum: 38a7152ff7265a9321ea214b9c69e8224ab1febbdec98efbbde6e562f17ff68405569b796b1c5271f354aef8783665d29953f051f68c1fc45306e61aec82fdc4
   languageName: node
   linkType: hard
 
@@ -4619,6 +4778,15 @@ __metadata:
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
+  languageName: node
+  linkType: hard
+
+"cobe@npm:^0.6.3":
+  version: 0.6.3
+  resolution: "cobe@npm:0.6.3"
+  dependencies:
+    phenomenon: ^1.6.0
+  checksum: 6c389512bfade20f924ae7cbd780fc25bbf25f021183ea8a451115cf9447a942d5736a830b9a8de30efe23ded0f72ac509d46fdc65da3a3afcfe772a05db181f
   languageName: node
   linkType: hard
 
@@ -7181,6 +7349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-buffer@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "is-buffer@npm:2.0.5"
+  checksum: 764c9ad8b523a9f5a32af29bdf772b08eb48c04d2ad0a7240916ac2688c983bf5f8504bf25b35e66240edeb9d9085461f9b5dae1f3d2861c6b06a65fe983de42
+  languageName: node
+  linkType: hard
+
 "is-bun-module@npm:^1.0.2":
   version: 1.3.0
   resolution: "is-bun-module@npm:1.3.0"
@@ -7303,6 +7478,13 @@ __metadata:
   version: 2.0.3
   resolution: "is-map@npm:2.0.3"
   checksum: e6ce5f6380f32b141b3153e6ba9074892bbbbd655e92e7ba5ff195239777e767a976dcd4e22f864accaf30e53ebf961ab1995424aef91af68788f0591b7396cc
+  languageName: node
+  linkType: hard
+
+"is-node-process@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "is-node-process@npm:1.2.0"
+  checksum: 930765cdc6d81ab8f1bbecbea4a8d35c7c6d88a3ff61f3630e0fc7f22d624d7661c1df05c58547d0eb6a639dfa9304682c8e342c4113a6ed51472b704cee2928
   languageName: node
   linkType: hard
 
@@ -9575,6 +9757,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"phenomenon@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "phenomenon@npm:1.6.0"
+  checksum: e05ca8223a9df42c5cee02c082103ef96a349424fec18a8478d2171060a63095e21bef394529263c64d8082aff43204a0fa1355211fd7ac2a338c2839fffbca3
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0, picocolors@npm:^1.1.1":
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
@@ -9865,6 +10054,23 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"react-spring@npm:^9.7.5":
+  version: 9.7.5
+  resolution: "react-spring@npm:9.7.5"
+  dependencies:
+    "@react-spring/core": ~9.7.5
+    "@react-spring/konva": ~9.7.5
+    "@react-spring/native": ~9.7.5
+    "@react-spring/three": ~9.7.5
+    "@react-spring/web": ~9.7.5
+    "@react-spring/zdog": ~9.7.5
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 51495a1952a5b9f01d05647d7378900767494545524fd774fea75184573b24fd66f07a6ac3e0489ee450c09ab9af1ed86d1d2fb953d85eb4b5fd086501a357e1
   languageName: node
   linkType: hard
 
@@ -10713,6 +10919,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"retry@npm:0.13.1":
+  version: 0.13.1
+  resolution: "retry@npm:0.13.1"
+  checksum: 47c4d5be674f7c13eee4cfe927345023972197dbbdfba5d3af7e461d13b44de1bfd663bfc80d2f601f8ef3fc8164c16dd99655a221921954a65d044a2fc1233b
+  languageName: node
+  linkType: hard
+
 "retry@npm:^0.12.0":
   version: 0.12.0
   resolution: "retry@npm:0.12.0"
@@ -11502,9 +11715,11 @@ __metadata:
     "@types/react": ^19.0.8
     "@typescript-eslint/eslint-plugin": ^8.12.0
     "@typescript-eslint/parser": ^8.12.0
+    "@vercel/blob": ^0.27.2
     body-scroll-lock: ^4.0.0-beta.0
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
+    cobe: ^0.6.3
     contentlayer2: 0.5.4
     cross-env: ^7.0.3
     esbuild: 0.20.2
@@ -11529,6 +11744,7 @@ __metadata:
     prettier-plugin-tailwindcss: ^0.6.11
     react: 19.0.0
     react-dom: 19.0.0
+    react-spring: ^9.7.5
     reading-time: 1.5.0
     rehype-autolink-headings: ^7.1.0
     rehype-citation: ^2.0.0
@@ -11592,6 +11808,13 @@ __metadata:
   peerDependencies:
     tslib: ^2
   checksum: 283a2785e513dc892822dd0bbadaa79e873a7fc90b84798164717bf7cf837553e0b4518d8027b2307d8f6fc6caab088fa717112cd9196c6222763cc3cc1b7e79
+  languageName: node
+  linkType: hard
+
+"throttleit@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "throttleit@npm:2.1.0"
+  checksum: a2003947aafc721c4a17e6f07db72dc88a64fa9bba0f9c659f7997d30f9590b3af22dadd6a41851e0e8497d539c33b2935c2c7919cf4255922509af6913c619b
   languageName: node
   linkType: hard
 
@@ -11828,6 +12051,15 @@ __metadata:
   version: 6.20.0
   resolution: "undici-types@npm:6.20.0"
   checksum: b7bc50f012dc6afbcce56c9fd62d7e86b20a62ff21f12b7b5cbf1973b9578d90f22a9c7fe50e638e96905d33893bf2f9f16d98929c4673c2480de05c6c96ea8b
+  languageName: node
+  linkType: hard
+
+"undici@npm:^5.28.4":
+  version: 5.28.5
+  resolution: "undici@npm:5.28.5"
+  dependencies:
+    "@fastify/busboy": ^2.0.0
+  checksum: a402d699a602a8feee1c0f78267467c8ffcbd7682267fec7a1307fd11554a32976a2307bf1cc8bf6ef7a667654336592fbd66d675df20ce28357536fb55a3a7d
   languageName: node
   linkType: hard
 

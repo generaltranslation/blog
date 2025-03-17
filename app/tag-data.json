@@ -1,13 +1,13 @@
 {
-  "guide": 4,
-  "internationalization": 4,
-  "nextjs": 4,
-  "react": 2,
-  "tutorial": 1,
+  "guide": 3,
   "ai": 1,
   "chatbot": 1,
+  "internationalization": 4,
+  "nextjs": 4,
   "vercel": 1,
-  "plurals": 1,
   "gt-next": 1,
-  "hiring": 1
+  "hiring": 1,
+  "plurals": 1,
+  "react": 2,
+  "localization": 1
 }

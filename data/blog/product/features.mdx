@@ -1,0 +1,135 @@
+---
+title: Introducing gt-next
+date: 2025-03-04
+authors: [brian]
+images: ['/static/blogs/frameworks.png']
+summary: This article gives a summary of all of the features of General Translation.
+tags: ['internationalization', 'nextjs', 'react', 'localization']
+---
+
+Internationalizating of a Next.js app has plenty of pain points. 
+For me, the worst parts of i18n are:
+
+- Refactoring my whole codebase to extract strings. It takes a long time!
+- Ongoing tech debt from managing translation keys.
+- Poor quality, out-of-context machine translations.
+- Translations breaking the UI.
+
+If you're a solo developer or working in a small team,
+you have to do all of this work manually. 
+It wastes a lot of engineering time.
+
+My new open source library, gt-next, fixes **all of these problems**.
+
+## What is gt-next?
+
+gt-next is a Next.js library that makes it easy to internationalize your app.
+The key features are:
+
+- Easily internationalize your app, without a big refactor
+- See your translations hot reload in development
+- Support as many languages as you need, loading them from a global CDN to reduce the bundle size
+
+gt-next integrates with the [generaltranslation.com](generaltranslation.com) platform to:
+
+- Translate content with the latest LLMs
+- Manage your translations with an interactive editor
+- See translations on demand with development API keys
+
+The goal is a powerful and flexible one stop i18n solution that works for all React and Next.js apps.
+
+Here's what makes gt-next unique:
+
+## Extremely easy to set up
+
+_Goodbye, painful refactors!_
+
+Unlike traditional i18n libraries, gt-next does everything inline.
+
+With legacy i18n libraries, your code might look something like this:
+
+```tsx
+// --- UI Code --- //
+const t = useTranslations();
+return (
+  <p>
+    {t('membership', { 
+      memberSince: user.memberSince 
+    })}
+  </p>
+)
+// --- Separate Dictionary File --- //
+{
+  "membership": "Member since {memberSince, date, short}",
+}
+```
+
+If you have a large app with thousands of translation entries, this is a **nightmare** to setup, maintain, and modify.
+
+With gt-next, you can just code, without having to worry about separate dictionary items:
+
+```tsx
+// --- UI Code --- //
+return (
+  <T>
+    <p>
+      Member since <DateTime>{user.memberSince}</DateTime>
+    </p>
+  </T>
+)
+```
+
+import and use the `<T>` component and all the translations happen inline.
+So no more managing dictionary files,
+and you can see content in the context in which it's displayed!
+
+## Real-time translations in development
+
+During development, the library lets you translate your app **on-demand**, so you can see what your changes would look like in other languages.
+Just change text in your UI and watch the translation update **in real time**.
+
+This makes quality assurance and editing translations a breeze.
+
+<video
+  controls
+  src="https://cabuge2ah388tbmm.public.blob.vercel-storage.com/live-translation-59coTlE8Zo7jZX1AlXm6sKJPoqEPIV.mp4"
+/>
+
+## Context-aware translations
+
+You can add an optional `context` prop to your `<T>` translation components.
+
+This provides additional instructions to the GT translation service.
+
+For example, if you want to specify that a translation should have a certain tone, you can add:
+
+```tsx
+<T context={'Translate informally'}>
+  <p>Hey there, world!</p>
+</T>
+```
+
+## Fast and reliable infrastructure
+
+GT services are built for reliability and scalability, ensuring that the translation service is always available.
+
+<InteractiveGlobe width="50vw" maxWidth="200px" />
+
+GT also includes a global CDN, letting the library lazy load translations from the closest edge location.
+gt-next also lets you load files locally, or use your own CDN, or a mix of both!
+
+Not only does this drastically reduce the latency of translations and minimize your app's bundle size,
+but it also lets you modify your translations in production **without having to re-deploy your app**.
+
+<video
+  controls
+  src="https://cabuge2ah388tbmm.public.blob.vercel-storage.com/in-production-yRQjS1kSHYMszmCF4J9BxvVExjdpoL.mp4"
+/>
+
+## Get Started
+
+gt-next makes it easier than ever to internationalize your app.
+
+Start in minutes with our [docs](https://generaltranslation.com/docs)!
+
+If you find any features missing and would like to see them added, please let me know on our [Github](https://github.com/General-Translation/gt-libraries/issues) or [Discord](https://discord.gg/W99K6fchSu)!
