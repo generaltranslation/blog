@@ -1,4 +1,5 @@
 {
+  "hiring": 1,
   "guide": 3,
   "ai": 1,
   "chatbot": 1,
@@ -7,6 +8,5 @@
   "vercel": 1,
   "plurals": 1,
   "react": 1,
-  "gt-next": 1,
-  "hiring": 1
+  "gt-next": 1
 }
