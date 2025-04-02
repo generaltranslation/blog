@@ -5,8 +5,8 @@
   "internationalization": 3,
   "nextjs": 3,
   "vercel": 1,
-  "gt-next": 1,
-  "hiring": 1,
   "plurals": 1,
-  "react": 1
+  "react": 1,
+  "gt-next": 1,
+  "hiring": 1
 }
