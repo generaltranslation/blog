@@ -2,13 +2,13 @@
 title: gt-next@6.2.0
 description: New features and improvements for gt-next
 date: 2025-08-19
-authors: [ernest] 
+authors: [ernest]
 tags: ['gt-next', '6.2.0', 'swc', 'plugin', 'build-time', 'linting']
 ---
 
 ## Overview
 
-In **gt-next 6.2.0**, we've taken a big step toward moving computation from runtime to build time through an **SWC plugin**.
+In **gt-next 6.2.0**, we've taken a big step toward moving processing from runtime to build time through an **SWC plugin**.
 This approach unlocks new capabilities like compile-time hashing, pre-rendered translations, and stricter validation — all without adding runtime overhead.
 
 To keep things focused, we started small with three key improvements.
@@ -34,15 +34,15 @@ One of the biggest pain points for developers has been refreshing the page durin
 
 ```tsx title="page.tsx" copy
 export default function Page() {
-  const t = useGT();
+  const t = useGT()
   // const t = await getGT(); for server-side
 
   return (
     <>
-      {t("some content to translate")}
-      {t("some other content to translate")}
+      {t('some content to translate')}
+      {t('some other content to translate')}
     </>
-  );
+  )
 }
 ```
 
