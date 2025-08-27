@@ -36,7 +36,7 @@ export default function Page() {
 }
 ```
 
-Now, with `msg()`, strings can be declared directly as constants. The only requirement is that you pass them through `t()` (from `useTranslations()` or `getTranslations()`) when displaying.
+Now, with `msg()`, strings can be declared directly as constants. The only requirement is that you pass them through `t()` (from `useMessages()` or `getMessages()`) when displaying.
 
 ```tsx title="constants.tsx"
 export const greeting1 = 'Hello, world!'
@@ -47,11 +47,11 @@ export const greeting2 = msg('Hello, world!')
 import { greeting1, greeting2 } from './constants'
 
 export default function Page() {
-  const t = useTranslations()
+  const m = useMessages()
   return (
     <div>
       {greeting1}
-      {t(greeting2)}
+      {m(greeting2)}
     </div>
   )
 }
@@ -118,13 +118,13 @@ if (decodeMsg(message).length > 10) {
 You can also override parameters within the t() function, even if they were already interpolated when calling msg().
 
 ```tsx title="Page.tsx"
-import { msg, useTranslations } from 'gt-next'
+import { msg, useMessages } from 'gt-next'
 
 const message = msg('Hello, {name}!', { name: 'John' })
 
 export default function Page() {
-  const t = useTranslations()
-  return <div>{t(message, { name: 'Jane' })}</div> // This will return "Hello, Jane!"
+  const m = useMessages()
+  return <div>{m(message, { name: 'Jane' })}</div> // This will return "Hello, Jane!"
 }
 ```
 
