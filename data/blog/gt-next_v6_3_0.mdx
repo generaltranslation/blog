@@ -18,33 +18,42 @@ To achieve this, we introduce a new `msg()` function for translating strings any
 Historically, strings had to be wrapped by passing the `t()` function through multiple layers:
 
 ```tsx title="constants.tsx"
-// export const greeting = 'Hello, world!' // Original
-export const getGreeting = (t: any) => t('Hello, world!')
+export const greeting1 = 'Hello, world!'
+export const getGreeting2 = (t: any) => t('Hello, world!')
 ```
 
 ```tsx title="Page.tsx"
-import { getGreeting } from './constants'
+import { greeting1, getGreeting2 } from './constants'
 
 export default function Page() {
   const t = useGT()
-  // return <div>{greeting}</div> // Original
-  return <div>{getGreeting(t)}</div>
+  return (
+    <div>
+      {greeting1}
+      {getGreeting2(t)}
+    </div>
+  )
 }
 ```
 
 Now, with `msg()`, strings can be declared directly as constants. The only requirement is that you pass them through `t()` (from `useTranslations()` or `getTranslations()`) when displaying.
 
 ```tsx title="constants.tsx"
-// export const greeting = 'Hello, world!' // Original
-export const greeting = msg('Hello, world!')
+export const greeting1 = 'Hello, world!'
+export const greeting2 = msg('Hello, world!')
 ```
 
 ```tsx title="Page.tsx"
-import { greeting } from './constants'
+import { greeting1, greeting2 } from './constants'
 
 export default function Page() {
   const t = useTranslations()
-  return <div>{t(greeting)}</div>
+  return (
+    <div>
+      {greeting1}
+      {t(greeting2)}
+    </div>
+  )
 }
 ```
 
@@ -58,8 +67,6 @@ To support interpolation, the `msg()` function returns an encoded message instea
 <interpolated content>:<base64 encoded string>
 ```
 
-This design slightly changes how strings compare directly but ensures minimal impact on typing and code structure.
-
 The base64-encoded portion contains a JSON object with:
 
 - `$_hash`: Hash of the original string
@@ -68,13 +75,13 @@ The base64-encoded portion contains a JSON object with:
 - `$context`: Context of the message (if specified)
 - Any variables included in the interpolation
 
-To access the interpolated content, use decodeMsg().
+This design slightly changes how strings compare directly but ensures minimal impact on typing and code structure. To access the interpolated content, use `decodeMsg()`.
 
 ### Why an encoded string?
 
-The alternative to using an encoded string would mean that `msg()` would have to return a custom object type. While this works for the encode/decode paradigm, it introduces issues when dealing with strict typing.
+The alternative to using an encoded string would mean that `msg()` would have to return a custom object type containing the additional metadata. While this works for the encode/decode paradigm, it introduces issues when dealing with strict typing.
 
-We concluded that the best way to minimize the impact of i18n in this scenario would simply be to return a string which contains any additional metadata.
+We concluded that the best way to minimize the impact of i18n in this scenario would simply be to return a string which contains the metadata, instead.
 
 ### Example
 
@@ -91,7 +98,7 @@ if (message.length > 10) {
 }
 ```
 
-With msg() and decodeMsg():
+With `msg()` and `decodeMsg()`:
 
 ```ts title="internationalized.ts"
 import { msg, decodeMsg } from 'gt-next'
