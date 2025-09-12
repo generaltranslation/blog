@@ -9,7 +9,7 @@ tags: ['gt-next', '6.3.0', 'AI Development', 'String translation']
 
 In **gt-next 6.3.0**, we're moving closer to a library that is suitable for both human developers and AI developers. Our guiding principle for this release was to **minimize disruption to existing code** while still introducing the essential functionality required for i18n.
 
-To achieve this, we introduce a new `msg()` function for translating strings anywhere in your codebase. Previously, developers had to pass the `t()` function from `useGT()` or `getGT()` up the call stack in order to translate a string. With `msg()`, you simply wrap the string once, and then pass it through `t()` at render time.
+To achieve this, we introduce a new `msg()` function for translating strings anywhere in your codebase. Previously, developers had to pass the `t()` function from `useGT()` or `getGT()` up the call stack in order to translate a string. With `msg()`, you simply wrap the string once, and then pass it through `m()` at render time.
 
 ---
 
