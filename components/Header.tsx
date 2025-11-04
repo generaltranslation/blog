@@ -4,7 +4,6 @@ import Logo from '@/data/logo.svg'
 import LogoDark from '@/data/logo-dark.svg'
 import Link from './Link'
 import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import ThemeToggle from '@/components/ThemeToggle'
 
